@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "api/*.ts": {
-      "runtime": "nodejs18.x"
-    }
-  },
   "rewrites": [
     {
       "source": "/v1/(.*)",
@@ -12,46 +7,6 @@
     {
       "source": "/v1beta/(.*)",
       "destination": "/api/proxy"
-    },
-    {
-      "source": "/",
-      "destination": "/api/status"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        },
-        {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, PUT, DELETE, OPTIONS"
-        },
-        {
-          "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type, Authorization, x-api-key, x-password"
-        }
-      ]
-    },
-    {
-      "source": "/(v1|v1beta)/(.*)",
-      "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        },
-        {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, PUT, DELETE, OPTIONS"
-        },
-        {
-          "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type, Authorization, x-api-key, x-password"
-        }
-      ]
     }
   ]
 }
