@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini API Proxy for Vercel</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #4285f4;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .status {
+            background: #e8f5e8;
+            border: 1px solid #4caf50;
+            color: #2e7d32;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .endpoint {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+        }
+        .example {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        a {
+            color: #4285f4;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Gemini API Proxy</h1>
+        
+        <div class="status">
+            ✅ 代理服务已启动并运行
+        </div>
+
+        <h2>📡 API 端点</h2>
+        <div class="endpoint">
+            状态检查: <a href="/api/status" target="_blank">/api/status</a>
+        </div>
+        <div class="endpoint">
+            API代理: /v1beta/models/gemini-pro:generateContent
+        </div>
+
+        <div class="example">
+            <h3>💡 使用示例</h3>
+            <p>将你的Gemini API请求从：</p>
+            <code>https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent</code>
+            <p>替换为：</p>
+            <code>https://your-domain.vercel.app/v1beta/models/gemini-pro:generateContent</code>
+        </div>
+
+        <h2>🔗 相关链接</h2>
+        <ul>
+            <li><a href="https://github.com/mingge123-s/Gemini-API-Proxy-for-Vercel" target="_blank">GitHub 仓库</a></li>
+            <li><a href="https://ai.google.dev/docs" target="_blank">Gemini API 文档</a></li>
+            <li><a href="/api/status" target="_blank">服务状态</a></li>
+        </ul>
+
+        <div class="footer">
+            <p>Gemini API Proxy for Vercel © 2024</p>
+            <p>基于 <a href="https://github.com/wyeeeee/hajimi" target="_blank">hajimi</a> 项目构建</p>
+        </div>
+    </div>
+
+    <script>
+        // 检查API状态
+        fetch('/api/status')
+            .then(response => response.json())
+            .then(data => {
+                console.log('API状态:', data);
+                if (data.status === 'running') {
+                    document.querySelector('.status').innerHTML = '✅ 代理服务运行正常 - API密钥数量: ' + data.config.apiKeyCount;
+                }
+            })
+            .catch(error => {
+                console.error('无法获取API状态:', error);
+                document.querySelector('.status').innerHTML = '⚠️ 无法获取服务状态';
+                document.querySelector('.status').style.background = '#ffebee';
+                document.querySelector('.status').style.borderColor = '#f44336';
+                document.querySelector('.status').style.color = '#c62828';
+            });
+    </script>
+</body>
+</html>

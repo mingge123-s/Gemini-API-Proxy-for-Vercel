@@ -5,7 +5,7 @@
   "main": "api/index.js",
   "scripts": {
     "dev": "vercel dev",
-    "build": "echo 'Build completed successfully'",
+    "build": "echo 'Build completed successfully' && echo 'Static files are ready'",
     "start": "node dist/index.js",
     "deploy": "vercel --prod"
   },
